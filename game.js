@@ -18,6 +18,7 @@ let food = {
 let snake = [];         // Snake Array 
 snake[0] = {x: 9*box, y: 10*box};    // Snake head
 //snake[1] = {x: 8*box, y: 10*box};
+console.log(snake)
 
 // Current snake direction
 let d;
@@ -38,13 +39,14 @@ function direction(event){
 }
 
 function draw(){
+
     const canvas = document.getElementById('game-area');
     const ctx = canvas.getContext('2d');
-    if( ctx ){
 
-        console.log("works?")
+    if( ctx ){
         ctx.drawImage(ground,0,0);
         snake.forEach( (s, index) => {
+    
             ctx.fillStyle = ( index == 0 ) ? 'green' : 'white';
             ctx.fillRect(s.x, s.y, box, box);
             ctx.strokeStyle = 'red';
@@ -86,11 +88,12 @@ function draw(){
             snake.pop();
         }
         
-        // Game over rules
-        console.log(snakeX)
-        if( snakeX > box || snakeX > 17 * box || snakeY < 3 * box || snakeY > 17*box){
-            console.log("Game over");
-        //    clearInterval(game);
+        // Game over
+        if(snakeX < 0 || snakeX > 608 - box|| snakeY < 0 || snakeY >= 608)
+        {
+            console.log("game over");
+            console.log(`X: ${snakeX}, Y: ${snakeY}`)
+            clearInterval(game);
         }
 
         let newHead = {
