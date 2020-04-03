@@ -16,9 +16,11 @@ let food = {
 };
 
 let snake = [];         // Snake Array 
-snake[0] = {x: 9*box, y: 10*box};    // Snake head
-//snake[1] = {x: 8*box, y: 10*box};
-console.log(snake)
+snake[0] = {
+    x : 9 * box,
+    y : 10 * box
+};
+
 
 // Current snake direction
 let d;
@@ -38,6 +40,16 @@ function direction(event){
     }
 }
 
+// Check collison with tail
+function collison(head, array){
+    for(let i = 0; i < array.length; i++){
+        if(array[i].x == head.x && array[i].y == head.y && array.length > 1)
+            return true;
+    }
+    return false;
+}
+
+
 function draw(){
 
     const canvas = document.getElementById('game-area');
@@ -47,7 +59,7 @@ function draw(){
         ctx.drawImage(ground,0,0);
         snake.forEach( (s, index) => {
     
-            ctx.fillStyle = ( index == 0 ) ? 'green' : 'white';
+            ctx.fillStyle = ( index == 0 ) ? '#e96539' : '#b6eab0';
             ctx.fillRect(s.x, s.y, box, box);
             ctx.strokeStyle = 'red';
             ctx.strokeRect(s.x, s.y, box, box);
@@ -88,17 +100,17 @@ function draw(){
             snake.pop();
         }
         
-        // Game over
-        if(snakeX < 0 || snakeX > 608 - box|| snakeY < 0 || snakeY >= 608)
-        {
-            console.log("game over");
-            console.log(`X: ${snakeX}, Y: ${snakeY}`)
-            clearInterval(game);
-        }
-
         let newHead = {
             x: snakeX,
             y: snakeY
+        }
+
+
+        // Game over
+        if(snakeX < 0 || snakeX > 608 - box|| snakeY < 0 || snakeY >= 608 || collison(newHead, snake))
+        {
+            clearInterval(game);
+           // dead.play();
         }
 
         snake.unshift(newHead);
