@@ -8,7 +8,11 @@ ground.src = "../img/background.jpg"
 const foodImg = new Image();
 foodImg.src = "../img/food.png";
 
+// Integer score
 let score = 0;
+
+// Display Score
+let dispScore = document.getElementById('score');
 
 let food = {
     x: Math.floor(Math.random() * 17 + 1) * box,
@@ -21,11 +25,26 @@ snake[0] = {
     y : 10 * box
 };
 
+snake[1] = {
+    x : 8*box,
+    y : 10 * box
+};
+
+// Size decreases every 2 seconds
+let starveSpeed = 2000;
 
 // Current snake direction
-let d;
+let d = "RIGHT";
 
 document.addEventListener("keydown", direction);
+
+// Resart button pressed
+function restart(){ location.reload(false); }
+
+// Decrease size every 3 seconds
+setInterval( () => {
+    snake.pop();
+}, starveSpeed);
 
 // Function Changes the direction of the snake movement
 function direction(event){
@@ -65,18 +84,15 @@ function draw(){
             ctx.strokeRect(s.x, s.y, box, box);
         } )
 
-        
-
         // Draw food at random places
         ctx.drawImage(foodImg, food.x, food.y);
 
-        // Score
-        ctx.fillStyle = 'white';
-        ctx.font = '45px Changa One';
-       
-        ctx.fillText(score, 2*box, box);
-        
+        dispScore.textContent = score;        
 
+        if( snake.length < 1 ){
+            dispScore.textContent = `GAME OVER !! FINAL SCORE: ${score}`
+            clearInterval(game);
+        }
         // Old snake head position
         let snakeX = snake[0].x;
         let snakeY = snake[0].y;
@@ -107,10 +123,11 @@ function draw(){
 
 
         // Game over
-        if(snakeX < 0 || snakeX > 608 - box|| snakeY < 0 || snakeY >= 608 || collison(newHead, snake))
+        if(snakeX < 0 || snakeX > 608 - box|| snakeY < 0 || snakeY >= 608 || collison(newHead, snake) || snake.length < 0)
         {
+            dispScore.textContent = `GAME OVER !! FINAL SCORE: ${score}`
             clearInterval(game);
-           // dead.play();
+            
         }
 
         snake.unshift(newHead);
@@ -122,5 +139,4 @@ function draw(){
 }
 
 let game = setInterval(draw, 100);
-
 

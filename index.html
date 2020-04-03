@@ -15,13 +15,63 @@
 
 </head>
 
-<body>
+<body style="  background-color: #adbee9;">
 
-  <h4>Starving Snake</h4>
-  <hr/>
   <div class="container">
+    <h4 class="heading">Starving Snake</h4>
+    <hr/>
+    <div class="container" 
+      style="background-color:#d4ddf6;
+      text-align: center;
+      border: black 2px solid;
+      width: 613px;
+      margin-top: 2px;
+      font-weight: bold;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      " >
+      <h5 id='score'>Score: 0</h5>
+    </div>
+    
     <canvas id='game-area' width="608" height="608">
+
     </canvas>
+    
+    <div class="container" 
+      style="background-color:#d4ddf6;
+      text-align: center;
+      border: black 2px solid;
+      width: 613px;
+      margin-top: 2px;
+      " >
+      <input class="btn btn-warning" type="button"  style="margin-top: 1%; margin-bottom: 1%" onclick="restart()" value="Restart"/>
+      <input class="btn btn-info" type="button" style="margin-top: 1%; margin-bottom: 1%" value="Rules" data-toggle="modal" data-target="#exampleModalLong"/>
+    </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"> Rules </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <li class="list-group-item">Head touches the tail: Game over !!</li>
+          <li class="list-group-item">Head hits wall: Game Over !!</li>
+          <li class="list-group-item">Snake decreases in Size every 1.5 seconds</li>
+          <li class="list-group-item">Snake size reduces less than 1 cube: Game over !!</li>
+        
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
   </div>
 
   <!-- Bootstrap libs -->

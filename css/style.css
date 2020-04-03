@@ -1,0 +1,21 @@
+body{
+  
+}
+
+.heading{
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #1640aa;
+    text-align: center;
+    margin-top: 2%;
+}
+
+#game-area{
+    border: 5px solid #1640aa;   
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  
+}
