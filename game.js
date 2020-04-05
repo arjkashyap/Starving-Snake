@@ -3,10 +3,10 @@ const box = 32;
 
 // Assets
 const ground = new Image();
-ground.src = "../img/background.jpg"
+ground.src = "img/background.jpg"
 
 const foodImg = new Image();
-foodImg.src = "../img/food.png";
+foodImg.src = "img/food.png";
 
 // Integer score
 let score = 0;
@@ -21,12 +21,12 @@ let food = {
 
 let snake = [];         // Snake Array 
 snake[0] = {
-    x : 9 * box,
+    x : 5 * box,
     y : 10 * box
 };
 
 snake[1] = {
-    x : 8*box,
+    x : 4*box,
     y : 10 * box
 };
 
